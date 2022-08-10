@@ -1,11 +1,32 @@
 import { useState, useEffect } from 'react'
+import { AiFillGithub } from "react-icons/ai";
 
 import './App.css';
+
+const DisplayInfo = (props) => {
+  const [show, setShow] = useState(false)
+
+  const displayDetail = () => {
+    setShow(!show)
+    // ! = not
+  }
+
+  return (
+    <div>
+      <p>{props.repo.name}</p>
+      <button onClick={displayDetail}>Show detail</button>
+      {show
+        ? <p>fork: {props.repo.forks_count}</p>
+        : <></>}
+    </div>
+  )
+}
 
 function App() {
 
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState()
+  const [data, setData] = useState()
 
   const handleChange = (e) => {
     setUsername(e.target.value)
@@ -21,18 +42,31 @@ function App() {
     const fetchData = async () => {
       const response = await fetch(`https://api.github.com/users/${search}/repos`)
       const data = await response.json()
+      setData(data)
       console.log(data)
     }
 
     fetchData()
   }, [search]);
 
+
+
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Username" value={username} onChange={handleChange} />
-        <input type="submit" value="Search Github"/>
-      </form>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="name" placeholder="Username" value={username} onChange={handleChange} />
+          <input type="submit" value="Search Github" />
+        </form>
+      </div>
+
+      {search &&
+        <div className="repos">
+          <div className="repos-owner"> <AiFillGithub /><span>{data[0]?.owner?.login}'s Repositories</span></div>
+          {data?.map((data) => {
+            return <DisplayInfo repo={data} />
+          })}
+        </div>}
     </div>
   );
 }
