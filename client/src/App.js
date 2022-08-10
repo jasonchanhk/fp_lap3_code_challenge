@@ -8,7 +8,6 @@ const DisplayInfo = (props) => {
 
   const displayDetail = () => {
     setShow(!show)
-    // ! = not
   }
 
   return (
@@ -34,7 +33,7 @@ function App() {
 
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState()
-  const [data, setdata]=useState([])
+  const [data, setData]=useState([])
 
   const handleChange = (e) => {
     setUsername(e.target.value)
@@ -56,9 +55,6 @@ function App() {
 
     fetchData()
   }, [search]);
-
-
-
 
   return (
     <div className="App">
