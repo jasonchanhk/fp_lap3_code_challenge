@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+
 import './App.css';
 
 
@@ -57,6 +58,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault()
     setSearch(username)
+    setUsername("")
   }
 
   useEffect(() => {
@@ -76,13 +78,9 @@ function App() {
 
   return (
     <div className="App">
-
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input type="text" name="name" onChange={handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+        <input type="text" name="name" placeholder="Username" value={username} onChange={handleChange} />
+        <input type="submit" value="Search Github"/>
       </form>
       
       <div id="info">
@@ -90,8 +88,6 @@ function App() {
           return <DisplayInfo repo={data} />
         })}
       </div>
-
-      
 
     </div>
   );
