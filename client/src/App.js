@@ -1,15 +1,53 @@
 import { useState, useEffect } from 'react'
 import './App.css';
 
+
+
+const DisplayInfo = (props) => {
+  const [show, setShow] = useState(false)
+
+  const displayDetail = () => {
+    setShow(!show)
+    // ! = not
+  }
+
+  return (
+    <div className='details'>
+      <p>{props.repo.name}</p>
+      <button onClick={displayDetail}>Show detail</button>
+      {show 
+      ? <>
+        <div id='results'>
+          <p>The fork count = {props.repo.forks_count}</p>
+          <p>The stargazers count = {props.repo.stargazers_count}</p>
+          <p>The watchers count = {props.repo.watchers_count} </p>
+          <p>The issues count = {props.repo.open_issues_count}</p>
+        </div>
+
+
+        
+        
+        </>
+      : <></>}
+    </div>
+  )
+}
+
+
+
+
+
+
+
+
+
+
 function App() {
 
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState()
   const [data, setdata]=useState([])
-  const [info, setInfo]= useState({
-    data:'',
-    loading: true
-  })
+
   
 
   const handleChange = (e) => {
@@ -33,21 +71,8 @@ function App() {
   }, [search]);
 
 
-  const showdetails =  (data)=> {
-    return(
-      <>
-        <p>The fork count = {data.forks_count}</p>
-        <p>The stargazers count = {data.stargazers_count}</p>
-        <p>The watchers count = {data.watchers_count} </p>
-        <p>The issues count = {data.open_issues_count}</p>
 
 
-      </>
-      
-
-    )
-
-  }
 
   return (
     <div className="App">
@@ -59,30 +84,10 @@ function App() {
         </label>
         <input type="submit" value="Submit" />
       </form>
-      <div>
-        {data?.map((data,index)=>{
-          const [show,setShow]=useState(false)
-
-          const toggle=()=>{
-            setShow(perviousState=> !perviousState)
-          }
-
-
-
-          return(
-            <>
-              <p key={index}>Name of repo={data.name}, index_position={index}</p>
-
-              <button onClick={toggle}>Details</button>
-              {show?showdetails(data):<></>}
-
-              <p>The fork count = {data.forks_count}</p>
-              <p>The stargazers count = {data.stargazers_count}</p>
-              <p>The watchers count = {data.watchers_count} </p>
-              <p>The issues count = {data.open_issues_count}</p>
-            </>
-            
-          )
+      
+      <div id="info">
+        {data?.map((data) => {
+          return <DisplayInfo repo={data} />
         })}
       </div>
 
