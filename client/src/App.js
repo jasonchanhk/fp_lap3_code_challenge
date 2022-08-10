@@ -12,12 +12,20 @@ const DisplayInfo = (props) => {
   }
 
   return (
-    <div>
+
+    <div className='details'>
       <p>{props.repo.name}</p>
       <button onClick={displayDetail}>Show detail</button>
-      {show
-        ? <p>fork: {props.repo.forks_count}</p>
-        : <></>}
+      {show 
+      ? <>
+        <div id='results'>
+          <p>The fork count = {props.repo.forks_count}</p>
+          <p>The stargazers count = {props.repo.stargazers_count}</p>
+          <p>The watchers count = {props.repo.watchers_count} </p>
+          <p>The issues count = {props.repo.open_issues_count}</p>
+        </div>
+        </>
+      : <></>}
     </div>
   )
 }
@@ -26,7 +34,7 @@ function App() {
 
   const [username, setUsername] = useState("");
   const [search, setSearch] = useState()
-  const [data, setData] = useState()
+  const [data, setdata]=useState([])
 
   const handleChange = (e) => {
     setUsername(e.target.value)
@@ -51,6 +59,7 @@ function App() {
 
 
 
+
   return (
     <div className="App">
       <div>
@@ -63,12 +72,16 @@ function App() {
       {search &&
         <div className="repos">
           <div className="repos-owner"> <AiFillGithub /><span>{data[0]?.owner?.login}'s Repositories</span></div>
+          <div id="info">
           {data?.map((data) => {
             return <DisplayInfo repo={data} />
           })}
+          </div>
         </div>}
     </div>
   );
 }
 
 export default App;
+
+
