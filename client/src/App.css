@@ -1,15 +1,16 @@
 .App {
-  text-align: center;
   min-height: 100vh;
+  padding: 50px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   background-color: whitesmoke;
   color: white;
 }
 
 form {
+  height: fit-content;
   background-color: white;
   padding: 15px;
   border-radius: 15px;  
@@ -20,7 +21,7 @@ input{
   padding: 20px 20px;
   box-sizing: border-box;
   border-radius: 10px;
-  border: none
+  border: none;  
 }
 
 input:first-child{
