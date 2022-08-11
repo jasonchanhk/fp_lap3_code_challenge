@@ -3,27 +3,21 @@
 @import url('https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
 
-
-
-
-
-
-
-
-
 .App {
   min-height: 100vh;
   padding: 50px;
   display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
+  flex-direction: column; 
   /* align-items: center; */
   background-color: whitesmoke;
-  color: white;
+  color: black;
+}
+
+.App> div{
+  margin: 0 auto;
 }
 
 form {
-  height: fit-content;
   background-color: white;
   padding: 15px;
   border-radius: 15px;  
@@ -31,7 +25,7 @@ form {
 }
 
 input{
-  padding: 20px 20px;
+  padding: 20px;
   box-sizing: border-box;
   border-radius: 10px;
   border: none;  
@@ -62,8 +56,25 @@ input:last-child:active{
   background-color: Yellow;
 }
 
+.repos {
+  padding: 20px 0px;
+}
 
 
+.repos-owner {
+  font-weight: 500;
+  font-size: 24px;
+  padding: 15px 40px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 20px;  
+  display: flex;
+  align-items: center;
+}
+
+.repos-owner span{
+  padding-left: 10px;
+}
 
 .details{
   color: black;
@@ -79,7 +90,7 @@ input:last-child:active{
               5px 5px 0px #999,
               6px 6px 0px #999;
   font-family: 'Roboto', sans-serif;
-  
+  text-align: center;
 }
 
 #results{
